@@ -17,6 +17,15 @@ $(function () {
     inputIndex = $("input").index(focusedInput) + 1;
   });
 
+  $("input").keydown(function (e) {
+    if (e.ctrlKey) return;
+
+    if (e.target.value.length >= 4) {
+      $(this).next("input").val("");
+      $(this).next("input").focus();
+    }
+  });
+
   // 붙여넣기 막기
   $("input").on("paste", function (e) {
     e.preventDefault();
@@ -25,7 +34,6 @@ $(function () {
 
 function enterValidater(event) {
   if (event.keyCode === 13) {
-    // 엔터 키의 keyCode는 13입니다.
     alert("엔터 키를 눌렀습니다!");
   }
 }
@@ -69,23 +77,28 @@ function pasteValidater(event) {
   if (inputIndex == "1") {
     // 사용자 입력값이 16개라면
     if (inputCharacter.length >= 16) {
+      alert("1번 박스 16 이상");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
       $("input:last").val(inputCharacter.substr(12, 4));
     } else if (inputCharacter.length < 16 && inputCharacter.length > 12) {
+      alert("1번박스 12 ~ 15");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
       $("input:last").val(inputCharacter.substr(12, 4));
     } else if (inputCharacter.length <= 12 && inputCharacter.length > 8) {
+      alert("1번박스 8 ~ 11");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
     } else if (inputCharacter.length <= 8 && inputCharacter.length > 4) {
+      alert("1번박스 5 ~ 7");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
     } else if (inputCharacter.length <= 4) {
+      alert("1번박스 4이하");
       $("input:first").val(inputCharacter.substr(0, 4));
     }
   }
@@ -93,22 +106,27 @@ function pasteValidater(event) {
   if (inputIndex == "2") {
     // 사용자 입력값이 16개라면
     if (inputCharacter.length >= 16) {
+      alert("2번 박스 16 이상");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
       $("input:last").val(inputCharacter.substr(12, 4));
     } else if (inputCharacter.length < 16 && inputCharacter.length > 12) {
+      alert("2번 박스 12 ~ 15");
       $("input:eq(1)").val(inputCharacter.substr(0, 4));
       $("input:eq(2)").val(inputCharacter.substr(4, 4));
       $("input:last").val(inputCharacter.substr(8, 4));
     } else if (inputCharacter.length <= 12 && inputCharacter.length > 8) {
+      alert("2번 박스 9 ~ 12");
       $("input:eq(1)").val(inputCharacter.substr(0, 4));
       $("input:eq(2)").val(inputCharacter.substr(4, 4));
       $("input:last").val(inputCharacter.substr(8, 4));
     } else if (inputCharacter.length <= 8 && inputCharacter.length > 4) {
+      alert("2번 박스 5 ~ 7");
       $("input:eq(1)").val(inputCharacter.substr(0, 4));
       $("input:eq(2)").val(inputCharacter.substr(4, 4));
     } else if (inputCharacter.length <= 4) {
+      alert("2번 박스 4 이하");
       $("input:eq(1)").val(inputCharacter.substr(0, 4));
     }
   }
@@ -116,20 +134,25 @@ function pasteValidater(event) {
   if (inputIndex == "3") {
     // 사용자 입력값이 16개라면
     if (inputCharacter.length >= 16) {
+      alert("3번 박스 16 이상");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
       $("input:last").val(inputCharacter.substr(12, 4));
     } else if (inputCharacter.length < 16 && inputCharacter.length > 12) {
+      alert("3번 박스 12 ~ 15");
       $("input:eq(2)").val(inputCharacter.substr(0, 4));
       $("input:last").val(inputCharacter.substr(4, 4));
     } else if (inputCharacter.length <= 12 && inputCharacter.length > 8) {
+      alert("3번 박스 9 ~ 12");
       $("input:eq(2)").val(inputCharacter.substr(0, 4));
       $("input:last").val(inputCharacter.substr(4, 4));
     } else if (inputCharacter.length <= 8 && inputCharacter.length > 4) {
+      alert("3번 박스 5 ~ 7");
       $("input:eq(2)").val(inputCharacter.substr(0, 4));
       $("input:last").val(inputCharacter.substr(4, 4));
     } else if (inputCharacter.length <= 4) {
+      alert("3번 박스 4 이하");
       $("input:eq(2)").val(inputCharacter.substr(0, 4));
     }
   }
