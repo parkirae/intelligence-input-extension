@@ -20,6 +20,8 @@ $(function () {
   $("input").keydown(function (e) {
     // ctrl 누르면 함수 실행 중단 및 종료
     if (e.ctrlKey) return;
+    if (e.altKey) return;
+    if (e.altKey && e.key === "Tab") return;
 
     console.log(e.target.value.length);
     // 입력된 값의 길이가 4이상인 경우에 실행
