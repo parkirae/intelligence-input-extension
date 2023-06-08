@@ -17,7 +17,7 @@ $(function () {
     inputIndex = $("input").index(focusedInput) + 1;
   });
 
-  $("input").keydown(function (e) {
+  $("input").on("input", function (e) {
     // ctrl 누르면 함수 실행 중단 및 종료
     if (e.ctrlKey) return;
     if (e.altKey) return;
