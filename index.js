@@ -9,6 +9,7 @@ $(function () {
     }
   });
 
+  // 붙여넣기 유효성 검사에 사용되는 input index값
   // input에 focus가 되면
   $("input").focus(function () {
     // this로 값을 가져와서
@@ -17,7 +18,7 @@ $(function () {
     inputIndex = $("input").index(focusedInput) + 1;
   });
 
-  $("input").on("input", function (e) {
+  $("input").keydown(function (e) {
     // ctrl 누르면 함수 실행 중단 및 종료
     if (e.ctrlKey) return;
     if (e.altKey) return;
@@ -25,7 +26,7 @@ $(function () {
 
     console.log(e.target.value.length);
     // 입력된 값의 길이가 4이상인 경우에 실행
-    if (e.target.value.length >= 4) {
+    if (e.target.value.length > 4) {
       // 다음 포커스 값 초기화
       $(this).next("input").val("");
       // 포커스 다음으로 이동
@@ -38,12 +39,6 @@ $(function () {
     e.preventDefault();
   });
 });
-
-function enterValidater(event) {
-  if (event.keyCode === 13) {
-    alert("엔터 키를 눌렀습니다!");
-  }
-}
 
 // 숫자와 영문자만 입력할 수 있게 prevent하는 함수
 function inputValidater(input) {
@@ -80,77 +75,104 @@ function pasteValidater(event) {
 
   // 사용자가 선택한 게 1번 박스라면
   if (inputIndex == "1") {
+    // 입력값이 16보다 크다면
     if (inputCharacter.length >= 16) {
+      alert("1번 선택지");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
       $("input:last").val(inputCharacter.substr(12, 4));
+      // 입력값이 16보다 작고, 12보다 크다면. 즉 13 ~ 15라면
     } else if (inputCharacter.length < 16 && inputCharacter.length > 12) {
+      alert("2번 선택지");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
       $("input:last").val(inputCharacter.substr(12, 4));
+      // 입력값이 12보다 작거나 같고, 8보다 크다면. 즉 9 ~ 12라면
     } else if (inputCharacter.length <= 12 && inputCharacter.length > 8) {
+      alert("3번 선택지");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
+      // 입력값이 8보다 작거나 같고, 4보다 크다면. 즉 5 ~ 8라면
     } else if (inputCharacter.length <= 8 && inputCharacter.length > 4) {
+      alert("4번 선택지");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
+      // 입력값이 4보다 작거나 같다면, 즉 4 이하라면
     } else if (inputCharacter.length <= 4) {
+      alert("5번 선택지");
       $("input:first").val(inputCharacter.substr(0, 4));
     }
   }
 
   if (inputIndex == "2") {
+    // 입력값이 16보다 같거나 크다면. 즉 16 이상이라면
     if (inputCharacter.length >= 16) {
+      alert("6번 선택지");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
       $("input:last").val(inputCharacter.substr(12, 4));
+      // 입력값이 16보다 작고, 12보다는 크다면 즉. 13 ~ 15라면
     } else if (inputCharacter.length < 16 && inputCharacter.length > 12) {
+      alert("7번 선택지");
       $("input:eq(1)").val(inputCharacter.substr(0, 4));
       $("input:eq(2)").val(inputCharacter.substr(4, 4));
       $("input:last").val(inputCharacter.substr(8, 4));
+      // 입력값이 12보다 같거나 작고, 8보다 크다면 즉 9 ~ 12라면
     } else if (inputCharacter.length <= 12 && inputCharacter.length > 8) {
+      alert("8번 선택지");
       $("input:eq(1)").val(inputCharacter.substr(0, 4));
       $("input:eq(2)").val(inputCharacter.substr(4, 4));
       $("input:last").val(inputCharacter.substr(8, 4));
+      // 입력값이 8보다 같거나 작고, 4보다 크다면. 즉 5 ~ 8라면
     } else if (inputCharacter.length <= 8 && inputCharacter.length > 4) {
+      alert("9번 선택지");
       $("input:eq(1)").val(inputCharacter.substr(0, 4));
       $("input:eq(2)").val(inputCharacter.substr(4, 4));
+      // 입력값이 4보다 같거나 작다면, 즉 4 이하라면
     } else if (inputCharacter.length <= 4) {
+      alert("10번 선택지");
       $("input:eq(1)").val(inputCharacter.substr(0, 4));
     }
   }
 
   if (inputIndex == "3") {
     if (inputCharacter.length >= 16) {
+      alert("11번 선택지");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
       $("input:last").val(inputCharacter.substr(12, 4));
     } else if (inputCharacter.length < 16 && inputCharacter.length > 12) {
+      alert("12번 선택지");
       $("input:eq(2)").val(inputCharacter.substr(0, 4));
       $("input:last").val(inputCharacter.substr(4, 4));
     } else if (inputCharacter.length <= 12 && inputCharacter.length > 8) {
+      alert("13번 선택지");
       $("input:eq(2)").val(inputCharacter.substr(0, 4));
       $("input:last").val(inputCharacter.substr(4, 4));
     } else if (inputCharacter.length <= 8 && inputCharacter.length > 4) {
+      alert("14번 선택지");
       $("input:eq(2)").val(inputCharacter.substr(0, 4));
       $("input:last").val(inputCharacter.substr(4, 4));
     } else if (inputCharacter.length <= 4) {
+      alert("15번 선택지");
       $("input:eq(2)").val(inputCharacter.substr(0, 4));
     }
   }
 
   if (inputIndex == "4") {
     if (inputCharacter.length >= 16) {
+      alert("16번 선택지");
       $("input:first").val(inputCharacter.substr(0, 4));
       $("input:eq(1)").val(inputCharacter.substr(4, 4));
       $("input:eq(2)").val(inputCharacter.substr(8, 4));
       $("input:last").val(inputCharacter.substr(12, 4));
     } else if (inputCharacter.length < 16) {
+      alert("17번 선택지");
       $("input:last").val(inputCharacter.substr(0, 4));
     }
   }
